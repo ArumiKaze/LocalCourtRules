@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ColDef, FirstDataRenderedEvent } from 'ag-grid-community';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CourtRule, FireStoreService } from '../fire-store.service';
 
 @Component({
@@ -8,9 +8,7 @@ import { CourtRule, FireStoreService } from '../fire-store.service';
   templateUrl: './rules-table.component.html',
   styleUrls: ['./rules-table.component.css']
 })
-export class RulesTableComponent implements OnInit, OnDestroy {
-
-  private ngUnsubscribe = new Subject<void>();
+export class RulesTableComponent implements OnInit {
 
   queryRules$!: Observable<CourtRule[]>;
 
@@ -23,7 +21,14 @@ export class RulesTableComponent implements OnInit, OnDestroy {
       }, 
       flex: 1
     },
-    { field: 'websiteName', flex: 1 },
+    { 
+      headerName: 'Source Website',
+      field: 'websiteName',
+      cellRenderer: function (params: any) {
+        return `<a href="${params.data.websiteLink}" target="_blank">${params.data.websiteName}</a>`;
+      }, 
+      flex: 1 
+    },
     { field: 'state', flex: 1, maxWidth: 100, resizable: false }
   ];
 
@@ -39,16 +44,11 @@ export class RulesTableComponent implements OnInit, OnDestroy {
   constructor(private fireStore: FireStoreService) { }
 
   ngOnInit(): void {
-    this.fireStore.subjectStateFilter$.pipe(takeUntil(this.ngUnsubscribe)).subscribe({
+    this.fireStore.subjectStateFilter$.subscribe({
       next: (rules: any) => {
         this.queryRules$ = rules;
       }
     });
-  }
-
-  ngOnDestroy(): void {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
   }
 
   ApplyStateFilter(state: string) {
