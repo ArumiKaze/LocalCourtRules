@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'ag-grid-community/dist/styles/ag-grid.css';
+@import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+@import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
+
+ag-grid-angular .ag-root-wrapper.ag-layout-normal.ag-ltr {
+    border: none;
+    border-radius: 0.5vw;
+}
+
+.ag-theme-alpine-dark {
+    border-radius: 0.5vw;
+}

@@ -94,6 +94,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "CourtLaw:build:production",
+            "firebaseProject": "thehublocalcourtrulesapp",
+            "firebaseHostingSite": "thehublocalcourtrulesapp"
+          }
         }
       }
     }

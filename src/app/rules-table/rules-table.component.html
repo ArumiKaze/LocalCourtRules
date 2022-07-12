@@ -1,0 +1,25 @@
+<select (change)="ApplyStateFilter(stateDropDown.value)" #stateDropDown id="stateFilter">
+    <option value="">--</option>
+    <option value="CA">CA</option>
+    <option value="AK">AK</option>
+    <option value="NY">NY</option>
+</select>
+<div *ngIf="queryRules$ | async as queryRules; else loading" class="table">
+    <!--
+        <ul>
+        <li class="text" *ngFor="let item of queryRules">
+            {{item.pdfName}}
+        </li>
+        </ul>
+    -->
+    <ag-grid-angular 
+    style="max-width: 90%; height: 100%; overflow: hidden; flex-grow: 1;"
+    class="ag-theme-alpine-dark"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [rowData]="queryRules"
+    [rowSelection]="'multiple'"
+    [animateRows]="true"
+    (firstDataRendered)="OnFirstDataRendered($event)"></ag-grid-angular>
+</div>
+<ng-template #loading>Loading&hellip;</ng-template>

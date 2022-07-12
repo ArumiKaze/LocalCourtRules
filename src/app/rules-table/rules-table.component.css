@@ -1,0 +1,9 @@
+.table {
+    height: 35vw;
+    display: flex;
+    justify-content: center;
+}
+
+ag-grid-angular {
+    box-shadow: 0px 0px 10px 10px black;
+}

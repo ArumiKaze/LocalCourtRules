@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "thehublocalcourtrulesapp": {
+      "hosting": {
+        "CourtLaw": [
+          "thehublocalcourtrulesapp"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "thehublocalcourtrulesapp"
+  }
+}
