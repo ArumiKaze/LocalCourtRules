@@ -9,11 +9,13 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { RulesTableComponent } from './rules-table/rules-table.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RulesTableComponent
+    RulesTableComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

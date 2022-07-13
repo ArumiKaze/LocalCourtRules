@@ -11,6 +11,7 @@ import { CourtRule, FireStoreService } from '../fire-store.service';
 export class RulesTableComponent implements OnInit {
 
   queryRules$!: Observable<CourtRule[]>;
+  noRowsTemplate!: any;
 
   public columnDefs: ColDef[] = [
     {
@@ -49,6 +50,9 @@ export class RulesTableComponent implements OnInit {
         this.queryRules$ = rules;
       }
     });
+
+    this.noRowsTemplate = "Select a state/territory to begin...";
+    this.ApplyStateFilter("");
   }
 
   ApplyStateFilter(state: string) {
